@@ -1,7 +1,7 @@
 // Import the renderer functions
-import { renderFigureSequence } from './lib/renderFigureSequence.mjs';
-import { renderLatinSquare } from './lib/renderLatinSquare.mjs';
-import { renderMathEquation } from './lib/renderMathEquation.mjs';
+import { renderFigureSequence } from './lib/renderFigureSequence.mjs?v=20260808-2';
+import { renderLatinSquare } from './lib/renderLatinSquare.mjs?v=20260808-2';
+import { renderMathEquation } from './lib/renderMathEquation.mjs?v=20260808-2';
 
 // State
 let questionsData = {
@@ -12,6 +12,23 @@ let questionsData = {
 let currentQuestion = null;
 let currentType = null;
 
+function normalizeQuestionEntries(type, entries) {
+  if (!Array.isArray(entries)) {
+    return [];
+  }
+
+  return entries.map(entry => {
+    if (typeof entry === 'string') {
+      const filename = entry.endsWith('.json') ? entry : `${entry}.json`;
+      const id = filename.replace(/\.json$/, '');
+      const parts = id.split('-');
+      const difficulty = parts[1] || 'low';
+      return { id, difficulty, filename };
+    }
+    return entry;
+  });
+}
+
 // DOM elements
 const appDiv = document.getElementById('app');
 
@@ -19,11 +36,16 @@ const appDiv = document.getElementById('app');
 async function init() {
   // Load index.json
   try {
-    const response = await fetch('questions/index.json');
+    const response = await fetch('questions/index.json?v=20260808-2');
     if (!response.ok) {
       throw new Error(`Failed to load index.json: ${response.status}`);
     }
-    questionsData = await response.json();
+    const rawQuestionsData = await response.json();
+    questionsData = {
+      'figure-sequences': normalizeQuestionEntries('figure-sequences', rawQuestionsData['figure-sequences']),
+      'latin-squares': normalizeQuestionEntries('latin-squares', rawQuestionsData['latin-squares']),
+      'math-equations': normalizeQuestionEntries('math-equations', rawQuestionsData['math-equations'])
+    };
   } catch (error) {
     console.error('Error loading index.json:', error);
     // Show error to user
@@ -91,8 +113,11 @@ function renderQuestionListTab(container, type) {
   };
   
   questions.forEach(q => {
-    if (q.difficulty) {
-      grouped[q.difficulty].push(q);
+    const difficulty = (q.difficulty || 'low').toLowerCase();
+    if (grouped[difficulty]) {
+      grouped[difficulty].push(q);
+    } else {
+      grouped.low.push(q);
     }
   });
   
@@ -150,13 +175,13 @@ function renderQuestionListTab(container, type) {
 async function loadQuestionDetail(questionId, type) {
   try {
     // Find the question in our data
-    const question = questionsData[type].find(q => q.id === questionId);
+    const question = (questionsData[type] || []).find(q => q.id === questionId || q.filename === `${questionId}.json`);
     if (!question) {
       throw new Error(`Question ${questionId} not found`);
     }
     
     // Fetch the full question JSON
-    const response = await fetch(`questions/${type}/${questionId}.json`);
+    const response = await fetch(`questions/${type}/${questionId}.json?v=20260808-2`);
     if (!response.ok) {
       throw new Error(`Failed to load question ${questionId}: ${response.status}`);
     }
@@ -196,21 +221,35 @@ async function loadQuestionDetail(questionId, type) {
 
 // Render the "Add Question" tab
 function renderAddQuestionTab(container) {
-  container.innerHTML = `\r
-    <div class="add-question-container">\r
-      <h2>Add Question</h2>\r
-      <textarea id="question-json" placeholder="Paste a raw JSON question object here..."></textarea>\r
-      <div class="button-group">\r
-        <button id="preview-btn">Preview</button>\r
-        <button id="download-btn" class="secondary">Download as file</button>\r
-      </div>\r
-      <div id="preview-area"></div>\r
-      <div class="reminder">\r\n        <strong>Reminder:</strong> Save this file into questions/<type>/ and add its filename to questions/index.json, then refresh the page.\r\n      </div>\r\n  `;
+  if (!container) {
+    console.error('Add Question tab container is missing');
+    return;
+  }
+
+  container.innerHTML = `
+    <div class="add-question-container">
+      <h2>Add Question</h2>
+      <textarea id="question-json" placeholder="Paste a raw JSON question object here..."></textarea>
+      <div class="button-group">
+        <button id="preview-btn">Preview</button>
+        <button id="download-btn" class="secondary">Download as file</button>
+      </div>
+      <div id="preview-area"></div>
+      <div class="reminder">
+        <strong>Reminder:</strong> Save this file into questions/<type>/ and add its filename to questions/index.json, then refresh the page.
+      </div>
+    </div>
+  `;
   
   const textarea = container.querySelector('#question-json');
   const previewBtn = container.querySelector('#preview-btn');
   const downloadBtn = container.querySelector('#download-btn');
   const previewArea = container.querySelector('#preview-area');
+
+  if (!textarea || !previewBtn || !downloadBtn || !previewArea) {
+    console.error('Add Question tab markup is incomplete');
+    return;
+  }
   
   previewBtn.addEventListener('click', () => {
     const jsonText = textarea.value.trim();
