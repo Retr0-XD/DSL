@@ -1,0 +1,23 @@
+{
+  "id": "me-low-0004",
+  "type": "math-equation",
+  "difficulty": "low",
+  "variables": ["A", "B", "C"],
+  "equations": [
+    {
+      "lhs": [ {"coef": 1, "var": "A"}, {"coef": 1, "var": "B"}, {"coef": 1, "var": "C"} ],
+      "rhs": [ {"coef": 12, "var": null} ]
+    },
+    {
+      "lhs": [ {"coef": 1, "var": "A"}, {"coef": 1, "var": "B"}, {"coef": -1, "var": "C"} ],
+      "rhs": [ {"coef": 4, "var": null} ]
+    },
+    {
+      "lhs": [ {"coef": 1, "var": "A"}, {"coef": -1, "var": "B"}, {"coef": 1, "var": "C"} ],
+      "rhs": [ {"coef": 2, "var": null} ]
+    }
+  ],
+  "answer": { "A": 3, "B": 5, "C": 4 },
+  "reasoning_trace": "From eq1: A + B + C = 12. From eq2: A + B - C = 4. From eq3: A - B + C = 2.\nAdding eq1 and eq2: (A + B + C) + (A + B - C) = 12 + 4 → 2A + 2B = 16 → A + B = 8.\nSubtracting eq2 from eq1: (A + B + C) - (A + B - C) = 12 - 4 → 2C = 8 → C = 4.\nSubstituting C = 4 into eq3: A - B + 4 = 2 → A - B = -2.\nWe have A + B = 8 and A - B = -2.\nAdding: 2A = 6 → A = 3. Then B = 5.\nWait, that gives A=3, B=5, C=4. Let me check.\nEq1: 3+5+4=12 � ✓. Eq2: 3+5-4=4 � ✓. Eq3: 3-5+4=2 � ✓.\nSo answer is A=3, B=5, C=4.\n\nBut let me double-check the reasoning to match the expected answer format.\n\nActually, let me solve systematically:\nEq1: A + B + C = 12\nEq2: A + B - C = 4\nEq3: A - B + C = 2\n\nEq1 + Eq2: 2A + 2B = 16 → A + B = 8\nEq1 - Eq2: 2C = 8 → C = 4\nEq1 - Eq3: 2B = 10 → B = 5\nThen A = 8 - B = 3\nSo A=3, B=5, C=4.\n\nCheck all equations: � ✓��✓��✓",
+  "source": "pdf-style"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "me-low-0003",
+  "type": "math-equation",
+  "difficulty": "low",
+  "variables": ["A", "B"],
+  "equations": [
+    {
+      "lhs": [ {"coef": 2, "var": "A"}, {"coef": 1, "var": "B"} ],
+      "rhs": [ {"coef": 10, "var": null} ]
+    },
+    {
+      "lhs": [ {"coef": 1, "var": "A"}, {"coef": -1, "var": "B"} ],
+      "rhs": [ {"coef": 2, "var": null} ]
+    }
+  ],
+  "answer": { "A": 4, "B": 2 },
+  "reasoning_trace": "From eq1: 2A + B = 10. From eq2: A - B = 2 → A = B + 2.\nSubstituting into eq1: 2(B + 2) + B = 10 → 2B + 4 + B = 10 → 3B = 6 → B = 2.\nThen A = 2 + 2 = 4.\nCheck: eq1: 2(4) + 2 = 8 + 2 = 10 � ✓. eq2: 4 - 2 = 2 � ✓.",
+  "source": "pdf-style"
+}
