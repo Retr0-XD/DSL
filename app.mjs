@@ -1,7 +1,7 @@
 // Import the renderer functions
-import { renderFigureSequence } from './lib/renderFigureSequence.mjs?v=20260808-2';
-import { renderLatinSquare } from './lib/renderLatinSquare.mjs?v=20260808-2';
-import { renderMathEquation } from './lib/renderMathEquation.mjs?v=20260808-2';
+import { renderFigureSequence } from './lib/renderFigureSequence.mjs';
+import { renderLatinSquare } from './lib/renderLatinSquare.mjs';
+import { renderMathEquation } from './lib/renderMathEquation.mjs';
 
 // State
 let questionsData = {
@@ -12,7 +12,7 @@ let questionsData = {
 let currentQuestion = null;
 let currentType = null;
 
-function normalizeQuestionEntries(type, entries) {
+export function normalizeQuestionEntries(type, entries) {
   if (!Array.isArray(entries)) {
     return [];
   }
@@ -23,23 +23,42 @@ function normalizeQuestionEntries(type, entries) {
       const id = filename.replace(/\.json$/, '');
       const parts = id.split('-');
       const difficulty = parts[1] || 'low';
-      return { id, difficulty, filename };
+      return { id, difficulty, filename, type };
     }
+
+    if (entry && typeof entry === 'object') {
+      return {
+        ...entry,
+        id: entry.id || entry.filename?.replace(/\.json$/, '') || 'unknown',
+        difficulty: entry.difficulty || 'low',
+        filename: entry.filename || `${entry.id || 'unknown'}.json`,
+        type: entry.type || type
+      };
+    }
+
     return entry;
   });
 }
 
 // DOM elements
-const appDiv = document.getElementById('app');
+let appDiv = null;
+
+function getAppDiv() {
+  if (!appDiv && typeof document !== 'undefined') {
+    appDiv = document.getElementById('app');
+  }
+  return appDiv;
+}
 
 // Initialize the app
-async function init() {
+export async function init() {
   // Load index.json
   try {
-    const response = await fetch('questions/index.json?v=20260808-2');
+    const response = await fetch(`questions/index.json?t=${Date.now()}`, { cache: 'no-store' });
     if (!response.ok) {
       throw new Error(`Failed to load index.json: ${response.status}`);
     }
+
     const rawQuestionsData = await response.json();
     questionsData = {
       'figure-sequences': normalizeQuestionEntries('figure-sequences', rawQuestionsData['figure-sequences']),
@@ -49,7 +68,10 @@ async function init() {
   } catch (error) {
     console.error('Error loading index.json:', error);
     // Show error to user
-    appDiv.innerHTML = '<div class="error">Failed to load question bank. Please check the console.</div>';
+    const container = getAppDiv();
+    if (container) {
+      container.innerHTML = '<div class="error">Failed to load question bank. Please check the console.</div>';
+    }
     return;
   }
   
@@ -59,7 +81,12 @@ async function init() {
 
 // Render the main UI with tabs
 function renderUI() {
-  appDiv.innerHTML = `
+  const container = getAppDiv();
+  if (!container) {
+    return;
+  }
+
+  container.innerHTML = `
     <div class="tab-container">
       <button class="tab-button active" data-tab="figure-sequences">Figure Sequences</button>
       <button class="tab-button" data-tab="latin-squares">Latin Squares</button>
@@ -70,7 +97,7 @@ function renderUI() {
   `;
   
   // Set up tab switching
-  const tabButtons = appDiv.querySelectorAll('.tab-button');
+  const tabButtons = container.querySelectorAll('.tab-button');
   tabButtons.forEach(button => {
     button.addEventListener('click', () => {
       // Update active tab
@@ -89,7 +116,12 @@ function renderUI() {
 
 // Show content for a specific tab
 function showTabContent(tabName) {
-  const tabContentDiv = document.getElementById('tab-content');
+  const container = getAppDiv();
+  if (!container) {
+    return;
+  }
+
+  const tabContentDiv = container.querySelector('#tab-content');
   
   if (tabName === 'add-question') {
     renderAddQuestionTab(tabContentDiv);
@@ -181,7 +213,7 @@ async function loadQuestionDetail(questionId, type) {
     }
     
     // Fetch the full question JSON
-    const response = await fetch(`questions/${type}/${questionId}.json?v=20260808-2`);
+    const response = await fetch(`questions/${type}/${questionId}.json?t=${Date.now()}`, { cache: 'no-store' });
     if (!response.ok) {
       throw new Error(`Failed to load question ${questionId}: ${response.status}`);
     }
@@ -191,7 +223,11 @@ async function loadQuestionDetail(questionId, type) {
     currentQuestion = fullQuestion;
     
     // Render the question detail
-    const detailContainer = document.getElementById('question-detail');
+    const detailContainer = getAppDiv()?.querySelector('#question-detail');
+    if (!detailContainer) {
+      return;
+    }
+
     detailContainer.innerHTML = '<div class="loading">Loading question...</div>';
     
     // Render based on type
@@ -214,8 +250,10 @@ async function loadQuestionDetail(questionId, type) {
     detailContainer.appendChild(questionElement);
   } catch (error) {
     console.error('Error loading question detail:', error);
-    const detailContainer = document.getElementById('question-detail');
-    detailContainer.innerHTML = `<div class="error">Error loading question: ${error.message}</div>`;
+    const detailContainer = getAppDiv()?.querySelector('#question-detail');
+    if (detailContainer) {
+      detailContainer.innerHTML = `<div class="error">Error loading question: ${error.message}</div>`;
+    }
   }
 }
 
@@ -343,5 +381,13 @@ function renderAddQuestionTab(container) {
   downloadBtn.disabled = true;
 }
 
-// Initialize the app when the DOM is loaded
-document.addEventListener('DOMContentLoaded', init);
+// Initialize the app when the DOM is ready
+if (typeof document !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      void init();
+    }, { once: true });
+  } else {
+    void init();
+  }
+}

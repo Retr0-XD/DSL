@@ -65,6 +65,14 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    min-height: 400px; /* Ensure minimum height for tab content */
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+    overflow: visible; /* Allow content to extend beyond container */
 }
 
 /* Question list */
@@ -72,24 +80,92 @@ body {
     border: 1px solid var(--border-color);
     border-radius: 4px;
     overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    margin-bottom: 20px; /* Add space below question list */
 }
 
 .question-section {
-    border-top: 1px solid var(--border-color);
+    border-top: 2px solid var(--border-color);
+    margin-bottom: 2px; /* Add small margin between sections */
+    background-color: #fff;
+    position: relative;
+    z-index: 1;
+    min-height: 60px; /* Ensure minimum height for visibility */
+    transition: all 0.2s ease;
 }
 
 .question-section:first-child {
     border-top: none;
 }
 
+.question-section:hover {
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Add visual separator between sections */
+.question-section:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #e0e0e0;
+    z-index: 2;
+}
+
+/* Ensure section headers are always visible */
 .section-header {
     background-color: #f5f5f5;
-    padding: 10px 15px;
+    padding: 12px 16px;
     cursor: pointer;
     font-weight: 600;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+    position: relative;
+    z-index: 2;
+}
+
+.section-header:hover {
+    background-color: #eee;
+}
+
+/* Ensure question items are visible */
+.question-item {
+    padding: 12px 15px;
+    border-top: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    background-color: #fff;
+    position: relative;
+    z-index: 1;
+    min-height: 40px; /* Ensure minimum height for visibility */
+    display: flex;
+    align-items: center;
+}
+
+.question-item:hover {
+    background-color: #f9f9f9;
+}
+
+.question-item.selected {
+    background-color: #e3f2fd;
+    border-left: 3px solid var(--highlight-color);
+}
+
+.section-header {
+    background-color: #f5f5f5;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .section-header:hover {
@@ -110,6 +186,12 @@ body {
     border-top: 1px solid #eee;
     cursor: pointer;
     transition: background-color 0.2s;
+    background-color: #fff;
+}
+
+.question-list-inner {
+    padding: 0;
+    background-color: #fff;
 }
 
 .question-item:hover {
@@ -136,8 +218,12 @@ body {
 /* Question detail */
 #question-detail {
     border: 1px solid var(--border-color);
-    border-radius: 4px;
-    overflow: hidden;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    margin-top: 20px; /* Add space between question list and detail */
+    min-height: 200px; /* Ensure minimum height for visibility */
 }
 
 /* Add question tab */
@@ -399,4 +485,161 @@ button:disabled {
         height: 40px;
         font-size: 20px;
     }
+}
+
+/* Figure Sequence puzzle */
+.figure-sequence-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 16px;
+}
+
+.frames-container {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.frame-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.frame-wrapper > div:first-child {
+    font-size: 14px;
+    font-weight: 600;
+    color: #495057;
+}
+
+.frame-wrapper svg {
+    border: 1px solid #d0d7de;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.blank-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    min-width: 280px;
+}
+
+.blank-question-box {
+    border: 2px dashed #adb5bd;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #868e96;
+    background-color: #fff;
+    transition: all 0.2s;
+}
+
+.blank-question-box svg {
+    border: 1px solid #1976d2;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.blank-options-container {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.blank-option-panel {
+    border: 2px solid transparent;
+    border-radius: 6px;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background-color: #fff;
+}
+
+.blank-option-panel:hover {
+    border-color: #1976d2;
+    background-color: #e7f1ff;
+}
+
+.blank-option-panel svg {
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.check-answer-button {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.check-answer-button:hover {
+    background-color: #1565c0;
+}
+
+.check-answer-button:active {
+    transform: scale(0.98);
+}
+
+.explanation-container {
+    width: 100%;
+    max-width: 700px;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+}
+
+.explanation-container > div:first-child {
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #495057;
+}
+
+.explanation-container > div:nth-child(2) {
+    margin-bottom: 16px;
+    color: #6c757d;
+    line-height: 1.6;
+}
+
+.explanation-container > div:nth-child(3) {
+    font-weight: 700;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    color: #495057;
+}
+
+.explanation-container > div:nth-child(4) {
+    color: #6c757d;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+/* Warning banner */
+.warning-banner {
+    background-color: var(--warning-bg);
+    border: 1px solid var(--warning-border);
+    color: var(--warning-color);
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    font-size: 14px;
 }
