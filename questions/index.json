@@ -1,0 +1,1 @@
+{ "figure-sequences": ["fs-low-0001.json", "fs-medium-0002.json"], "latin-squares": ["ls-low-0001.json", "ls-medium-0002.json", "ls-medium-0003.json", "ls-medium-0004-ambiguous.json"], "math-equations": ["me-low-0001.json", "me-medium-0001.json", "me-medium-0002-wrong.json"] }

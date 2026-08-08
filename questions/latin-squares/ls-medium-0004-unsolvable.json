@@ -1,0 +1,17 @@
+{
+  "id": "ls-medium-0004-unsolvable",
+  "type": "latin-square",
+  "difficulty": "medium",
+  "size": 5,
+  "letters": ["A", "B", "C", "D", "E"],
+  "grid": [
+    ["A", "B", "C", "D", "E"],
+    ["B", "C", "D", "E", "A"],
+    ["C", "D", "E", "A", "B"],
+    ["D", "E", null, "B", "C"],
+    ["E", "A", "B", "C", "D"]
+  ],
+  "answer": "A",
+  "reasoning_trace": "Row 3 has D, E, _, B, C - missing A. Column 2 has C, D, E, null, B - missing A. Therefore the ? cell must be A.",
+  "source": "original"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "ls-medium-0004-ambiguous",
+  "type": "latin-square",
+  "difficulty": "medium",
+  "size": 3,
+  "letters": ["A", "B", "C"],
+  "grid": [
+    [null, "A", null],
+    ["A", "?", null],
+    [null, null, null]
+  ],
+  "answer": "A",
+  "reasoning_trace": "The given letters show that row 1 and column 1 each contain only the letter A. Therefore, the ? cell cannot be A (to avoid duplicate in row or column). It must be either B or C. However, completing the square shows that both B and C lead to valid Latin squares: if ?=B, the square is [C,A,B; A,B,C; B,C,A]; if ?=C, the square is [B,A,C; A,C,B; C,B,A]. Since there are two valid completions, the solution is not unique."
+}

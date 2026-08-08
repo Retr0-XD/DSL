@@ -1,0 +1,17 @@
+{
+  "id": "ls-medium-0002",
+  "type": "latin-square",
+  "difficulty": "medium",
+  "size": 5,
+  "letters": ["A", "B", "C", "D", "E"],
+  "grid": [
+    ["A", "B", "C", "D", "E"],
+    ["B", "C", "D", "E", "A"],
+    ["C", "D", "E", "A", "B"],
+    ["D", "E", "A", "B", null],
+    ["E", "A", "B", null, "D"]
+  ],
+  "answer": "C",
+  "reasoning_trace": "Row 3 has D, E, A, B - missing C. Column 3 has D, E, A, null - missing B, C. Intersection of row 3 missing (C) and column 3 missing (B,C) is C.\n\nAlternatively: Row 4 has E, A, B, null, D - missing C. Column 3 has D, E, A, null, null - missing B, C. Intersection of row 4 missing (C) and column 3 missing (B,C) is C.\n\nTherefore the ? cell must be C.",
+  "source": "original"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "fs-low-0001",
+  "type": "figure-sequence",
+  "difficulty": "low",
+  "grid": { "rows": 4, "cols": 4 },
+  "frames": [
+    { "objects": [ { "shape": "diamond", "row": 1, "col": 0, "color": "#1a7a5e", "rotation": 0 } ] },
+    { "objects": [ { "shape": "diamond", "row": 1, "col": 1, "color": "#1a7a5e", "rotation": 0 } ] },
+    { "objects": [ { "shape": "diamond", "row": 1, "col": 2, "color": "#1a7a5e", "rotation": 0 } ] },
+    { "objects": [ { "shape": "diamond", "row": 1, "col": 3, "color": "#1a7a5e", "rotation": 0 } ] }
+  ],
+  "blank_5_options": [
+    { "objects": [ { "shape": "diamond", "row": 1, "col": 2, "color": "#1a7a5e", "rotation": 0 } ] },
+    { "objects": [ { "shape": "diamond", "row": 2, "col": 3, "color": "#1a7a5e", "rotation": 0 } ] },
+    { "objects": [ { "shape": "diamond", "row": 1, "col": 3, "color": "#c0392b", "rotation": 0 } ] }
+  ],
+  "blank_5_correct_index": 0,
+  "blank_6_options": [
+    { "objects": [ { "shape": "diamond", "row": 1, "col": 0, "color": "#1a7a5e", "rotation": 0 } ] },
+    { "objects": [ { "shape": "diamond", "row": 1, "col": 1, "color": "#1a7a5e", "rotation": 0 } ] },
+    { "objects": [ { "shape": "diamond", "row": 0, "col": 1, "color": "#1a7a5e", "rotation": 0 } ] }
+  ],
+  "blank_6_correct_index": 1,
+  "motion_rule_description": "The teal diamond moves one cell to the right each frame and bounces off the left/right edges of the grid, reversing direction on contact. It does not change color or rotation.",
+  "reasoning_trace": "Frame1: row1,col0. Frame2: row1,col1 (right 1). Frame3: row1,col2 (right 1). Frame4: row1,col3 (right 1, now at right edge, col=cols-1=3). Since it's at the right edge, the next move bounces: Frame5: row1,col2 (left 1). Frame6: row1,col1 (left 1, continuing the bounce). Therefore blank_5 correct = row1,col2 (option index 0) and blank_6 correct = row1,col1 (option index 1).",
+  "source": "original"
+}

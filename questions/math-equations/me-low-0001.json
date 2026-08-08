@@ -1,0 +1,19 @@
+{
+  "id": "me-low-0001",
+  "type": "math-equation",
+  "difficulty": "low",
+  "variables": ["A", "B"],
+  "equations": [
+    {
+      "lhs": [ {"coef": 1, "var": "A"}, {"coef": 1, "var": "B"} ],
+      "rhs": [ {"coef": 5, "var": null} ]
+    },
+    {
+      "lhs": [ {"coef": 2, "var": "A"}, {"coef": -1, "var": "B"} ],
+      "rhs": [ {"coef": 1, "var": null} ]
+    }
+  ],
+  "answer": { "A": 2, "B": 3 },
+  "reasoning_trace": "From eq1: A + B = 5. From eq2: 2A - B = 1.\nAdding the two equations: (A + B) + (2A - B) = 5 + 1 → 3A = 6 → A = 2.\nSubstituting A = 2 into eq1: 2 + B = 5 → B = 3.\nCheck: eq2: 2(2) - 3 = 4 - 3 = 1 � ✓.",
+  "source": "original"
+}

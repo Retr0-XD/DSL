@@ -1,0 +1,40 @@
+{
+  "id": "me-medium-0001",
+  "type": "math-equation",
+  "difficulty": "medium",
+  "variables": ["A", "B", "C"],
+  "equations": [
+    {
+      "lhs": [ {"coef": 2, "var": "A"}, {"coef": 1, "var": "B"} ],
+      "rhs": [ {"coef": 7, "var": null} ]
+    },
+    {
+      "lhs": [ {"coef": 1, "var": "A"}, {"coef": 3, "var": "C"} ],
+      "rhs": [ {"coef": 9, "var": null} ]
+    },
+    {
+      "lhs": [ {"coef": 1, "var": "B"}, {"coef": 2, "var": "C"} ],
+      "rhs": [ {"coef": 8, "var": null} ]
+    }
+  ],
+  "answer": { "A": 2, "B": 3, "C": 3 },
+  "reasoning_trace": "From eq1: 2A + B = 7. From eq2: A + 3C = 9. From eq3: B + 2C = 8.\nSolve eq1 for B: B = 7 - 2A.\nSubstitute into eq3: (7 - 2A) + 2C = 8 → -2A + 2C = 1 → C = A + 0.5.\nSubstitute into eq2: A + 3(A + 0.5) = 9 → A + 3A + 1.5 = 9 → 4A = 7.5 → A = 1.875.\nWait, this doesn't give integer solution. Let me fix the equations to ensure integer solution.\n\nLet me create a proper system:\n2A + B = 7\nA + 3C = 9\nB + 2C = 8\n\nFrom first: B = 7 - 2A\nFrom third: (7 - 2A) + 2C = 8 → -2A + 2C = 1 → C = A + 0.5\nSecond: A + 3(A + 0.5) = 9 → 4A + 1.5 = 9 → 4A = 7.5 → A = 1.875 (not integer)\n\nLet me adjust to make it work:\n2A + B = 8\nA + 3C = 9\nB + 2C = 10\n\nB = 8 - 2A\n(8 - 2A) + 2C = 10 → -2A + 2C = 2 → C = A + 1\nA + 3(A + 1) = 9 → 4A + 3 = 9 → 4A = 6 → A = 1.5 (still not integer)\n\nLet me try:\nA + B = 5\n2A + C = 8\nB + 2C = 10\n\nFrom first: B = 5 - A\nThird: (5 - A) + 2C = 10 → -A + 2C = 5 → 2C = A + 5\nSecond: 2A + C = 8 → C = 8 - 2A\nSubstitute: 2(8 - 2A) = A + 5 → 16 - 4A = A + 5 → 16 - 5 = 5A → 11 = 5A → A = 2.2\n\nOK, let me just use the example from the worked example but make it medium:\n\nA - B + C - D = 3\n4B = C\n2B = A\n9 + B = D\n\nBut that's 4 variables. For 3 variables:\n\nA + B = 4\nA - B = 2\n2A + B = 7\n\nFrom first two: Adding: 2A = 6 → A = 3, then B = 1\nCheck third: 2(3) + 1 = 7 ���� � �� ✓\n\nSo answer: A=3, B=1\n\nBut I need 3 variables. Let me do:\n\nA + B + C = 9\nA + B - C = 1\nA - B + C = 3\n\nAdding first two: 2A + 2B = 10 → A + B = 5\nSubtract second from third: (A - B + C) - (A + B - C) = 3 - 1 → -2B + 2C = 2 → -B + C = 1 → C = B + 1\nFrom A + B = 5 and C = B + 1, substitute into first: 5 + (B + 1) = 9 → B + 6 = 9 → B = 3\nThen A = 2, C = 4\n\nCheck: eq1: 2+3+4=9 ���� � �� ✓\neq2: 2+3-4=1 ���� � �� ✓\neq3: 2-3+4=3 ���� � �� ✓\n\nPerfect! Now let me create the JSON.",
+  "variables": ["A", "B", "C"],
+  "equations": [
+    {
+      "lhs": [ {"coef": 1, "var": "A"}, {"coef": 1, "var": "B"}, {"coef": 1, "var": "C"} ],
+      "rhs": [ {"coef": 9, "var": null} ]
+    },
+    {
+      "lhs": [ {"coef": 1, "var": "A"}, {"coef": 1, "var": "B"}, {"coef": -1, "var": "C"} ],
+      "rhs": [ {"coef": 1, "var": null} ]
+    },
+    {
+      "lhs": [ {"coef": 1, "var": "A"}, {"coef": -1, "var": "B"}, {"coef": 1, "var": "C"} ],
+      "rhs": [ {"coef": 3, "var": null} ]
+    }
+  ],
+  "answer": { "A": 2, "B": 3, "C": 4 },
+  "reasoning_trace": "From eq1: A + B + C = 9. From eq2: A + B - C = 1.\nAdding eq1 and eq2: (A + B + C) + (A + B - C) = 9 + 1 → 2A + 2B = 10 → A + B = 5.\nSubtracting eq2 from eq3: (A - B + C) - (A + B - C) = 3 - 1 → -2B + 2C = 2 → -B + C = 1 → C = B + 1.\nSubstitute A + B = 5 and C = B + 1 into eq1: 5 + (B + 1) = 9 → B + 6 = 9 → B = 3.\nThen A = 5 - B = 5 - 3 = 2, and C = B + 1 = 3 + 1 = 4.\nCheck: eq1: 2 + 3 + 4 = 9 ���� � �� ✓. eq2: 2 + 3 - 4 = 1 ���� � �� ✓. eq3: 2 - 3 + 4 = 3 ���� � �� ✓.",
+  "source": "original"
+}
