@@ -1,0 +1,77 @@
+{
+  "id": "fs-high-0001",
+  "type": "figure-sequence",
+  "difficulty": "high",
+  "grid": { "rows": 4, "cols": 4 },
+  "frames": [
+    { "objects": [
+      { "shape": "diamond", "row": 0, "col": 0, "color": "#f39c12", "rotation": 0 },
+      { "shape": "square", "row": 1, "col": 2, "color": "#27ae60", "rotation": 0 },
+      { "shape": "circle", "row": 3, "col": 3, "color": "#8e44ad", "rotation": 0 },
+      { "shape": "triangle", "row": 0, "col": 3, "color": "#c0392b", "rotation": 0 }
+    ] },
+    { "objects": [
+      { "shape": "diamond", "row": 0, "col": 1, "color": "#f39c12", "rotation": 90 },
+      { "shape": "square", "row": 0, "col": 2, "color": "#27ae60", "rotation": 0 },
+      { "shape": "circle", "row": 3, "col": 2, "color": "#8e44ad", "rotation": 0 },
+      { "shape": "triangle", "row": 1, "col": 3, "color": "#c0392b", "rotation": 0 }
+    ] },
+    { "objects": [
+      { "shape": "diamond", "row": 0, "col": 2, "color": "#f39c12", "rotation": 180 },
+      { "shape": "square", "row": 0, "col": 1, "color": "#27ae60", "rotation": 0 },
+      { "shape": "circle", "row": 3, "col": 1, "color": "#8e44ad", "rotation": 0 },
+      { "shape": "triangle", "row": 2, "col": 3, "color": "#c0392b", "rotation": 0 }
+    ] },
+    { "objects": [
+      { "shape": "diamond", "row": 0, "col": 3, "color": "#f39c12", "rotation": 270 },
+      { "shape": "square", "row": 1, "col": 1, "color": "#27ae60", "rotation": 0 },
+      { "shape": "circle", "row": 3, "col": 0, "color": "#8e44ad", "rotation": 0 },
+      { "shape": "triangle", "row": 3, "col": 3, "color": "#c0392b", "rotation": 0 }
+    ] }
+  ],
+  "blank_5_options": [
+    { "objects": [
+      { "shape": "diamond", "row": 1, "col": 3, "color": "#f39c12", "rotation": 0 },
+      { "shape": "square", "row": 2, "col": 1, "color": "#27ae60", "rotation": 0 },
+      { "shape": "circle", "row": 2, "col": 0, "color": "#8e44ad", "rotation": 0 },
+      { "shape": "triangle", "row": 3, "col": 2, "color": "#c0392b", "rotation": 0 }
+    ] },
+    { "objects": [
+      { "shape": "diamond", "row": 1, "col": 3, "color": "#f39c12", "rotation": 0 },
+      { "shape": "square", "row": 2, "col": 1, "color": "#27ae60", "rotation": 0 },
+      { "shape": "circle", "row": 2, "col": 0, "color": "#8e44ad", "rotation": 0 },
+      { "shape": "triangle", "row": 2, "col": 2, "color": "#c0392b", "rotation": 0 }
+    ] },
+    { "objects": [
+      { "shape": "diamond", "row": 0, "col": 2, "color": "#f39c12", "rotation": 0 },
+      { "shape": "square", "row": 2, "col": 1, "color": "#27ae60", "rotation": 0 },
+      { "shape": "circle", "row": 2, "col": 0, "color": "#8e44ad", "rotation": 0 },
+      { "shape": "triangle", "row": 3, "col": 2, "color": "#c0392b", "rotation": 0 }
+    ] }
+  ],
+  "blank_5_correct_index": 0,
+  "blank_6_options": [
+    { "objects": [
+      { "shape": "diamond", "row": 2, "col": 3, "color": "#f39c12", "rotation": 90 },
+      { "shape": "square", "row": 3, "col": 1, "color": "#27ae60", "rotation": 0 },
+      { "shape": "circle", "row": 1, "col": 0, "color": "#8e44ad", "rotation": 0 },
+      { "shape": "triangle", "row": 3, "col": 1, "color": "#c0392b", "rotation": 0 }
+    ] },
+    { "objects": [
+      { "shape": "diamond", "row": 2, "col": 3, "color": "#f39c12", "rotation": 90 },
+      { "shape": "square", "row": 3, "col": 1, "color": "#27ae60", "rotation": 0 },
+      { "shape": "circle", "row": 1, "col": 0, "color": "#8e44ad", "rotation": 0 },
+      { "shape": "triangle", "row": 2, "col": 1, "color": "#c0392b", "rotation": 0 }
+    ] },
+    { "objects": [
+      { "shape": "diamond", "row": 1, "col": 2, "color": "#f39c12", "rotation": 90 },
+      { "shape": "square", "row": 3, "col": 1, "color": "#27ae60", "rotation": 0 },
+      { "shape": "circle", "row": 1, "col": 0, "color": "#8e44ad", "rotation": 0 },
+      { "shape": "triangle", "row": 3, "col": 1, "color": "#c0392b", "rotation": 0 }
+    ] }
+  ],
+  "blank_6_correct_index": 0,
+  "motion_rule_description": "Diamond: moves right along top row, bouncing at right edge, rotating 90° CW each frame. Square: moves along outer border counter-clockwise 1 step/frame. Circle: moves left along bottom row, bouncing at left edge. Triangle: moves down right column, bouncing at bottom edge.",
+  "reasoning_trace": "Diamond: (0,0)→(0,1)→(0,2)→(0,3)→bounce→(1,3)→(2,3). Rot: 0→90→180→270→0→90. Square: (1,2)→(0,2)→(0,1)→(1,1)→(2,1)→(3,1). Circle: (3,3)→(3,2)→(3,1)→(3,0)→bounce→(2,0)→(1,0). Triangle: (0,3)→(1,3)→(2,3)→(3,3)→bounce→(3,2)→(3,1). Blank5: diamond(1,3)rot0, square(2,1), circle(2,0), triangle(3,2). Blank6: diamond(2,3)rot90, square(3,1), circle(1,0), triangle(3,1).",
+  "source": "pdf-exercise-6"
+}

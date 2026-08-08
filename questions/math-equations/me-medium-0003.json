@@ -1,0 +1,23 @@
+{
+  "id": "me-medium-0003",
+  "type": "math-equation",
+  "difficulty": "medium",
+  "variables": ["R1", "R2", "R3"],
+  "equations": [
+    {
+      "lhs": [ {"coef": 1, "var": "R1"}, {"coef": 1, "var": "R2"}, {"coef": 1, "var": "R3"} ],
+      "rhs": [ {"coef": 900, "var": null} ]
+    },
+    {
+      "lhs": [ {"coef": 1, "var": "R1"}, {"coef": -1, "var": "R2"} ],
+      "rhs": [ {"coef": -100, "var": null} ]
+    },
+    {
+      "lhs": [ {"coef": 1, "var": "R2"}, {"coef": -1, "var": "R3"} ],
+      "rhs": [ {"coef": -100, "var": null} ]
+    }
+  ],
+  "answer": { "R1": 200, "R2": 300, "R3": 400 },
+  "reasoning_trace": "From eq1: R1 + R2 + R3 = 900. From eq2: R1 - R2 = -100 → R1 = R2 - 100. From eq3: R2 - R3 = -100 → R3 = R2 + 100.\nSubstituting into eq1: (R2 - 100) + R2 + (R2 + 100) = 900 → 3R2 = 900 → R2 = 300.\nThen R1 = 300 - 100 = 200, and R3 = 300 + 100 = 400.\nCheck: eq1: 200 + 300 + 400 = 900 ✓. eq2: 200 - 300 = -100 ✓. eq3: 300 - 400 = -100 ✓.",
+  "source": "pdf-electrical-q5"
+}

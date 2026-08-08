@@ -1,0 +1,27 @@
+{
+  "id": "me-medium-0004",
+  "type": "math-equation",
+  "difficulty": "medium",
+  "variables": ["R1", "R2", "R3", "R4"],
+  "equations": [
+    {
+      "lhs": [ {"coef": 1, "var": "R1"}, {"coef": 1, "var": "R2"}, {"coef": 1, "var": "R3"}, {"coef": 1, "var": "R4"} ],
+      "rhs": [ {"coef": 1175, "var": null} ]
+    },
+    {
+      "lhs": [ {"coef": 1, "var": "R1"}, {"coef": -1, "var": "R2"} ],
+      "rhs": [ {"coef": -125, "var": null} ]
+    },
+    {
+      "lhs": [ {"coef": 1, "var": "R2"}, {"coef": -1, "var": "R3"} ],
+      "rhs": [ {"coef": -200, "var": null} ]
+    },
+    {
+      "lhs": [ {"coef": 1, "var": "R3"}, {"coef": -1, "var": "R4"} ],
+      "rhs": [ {"coef": -100, "var": null} ]
+    }
+  ],
+  "answer": { "R1": 75, "R2": 200, "R3": 400, "R4": 500 },
+  "reasoning_trace": "From eq1: R1 + R2 + R3 + R4 = 1175. From eq2: R1 = R2 - 125. From eq3: R2 = R3 - 200. From eq4: R3 = R4 - 100.\nSubstituting: R1 = (R3 - 200) - 125 = R3 - 325. R2 = R3 - 200. R4 = R3 + 100.\nEq1: (R3 - 325) + (R3 - 200) + R3 + (R3 + 100) = 1175 → 4R3 - 425 = 1175 → 4R3 = 1600 → R3 = 400.\nThen R1 = 75, R2 = 200, R4 = 500.\nCheck: 75 + 200 + 400 + 500 = 1175 ✓. This matches the PDF circuit: 75Ω (100||300 parallel) + 200 + 400 + 500 = 1175Ω total.",
+  "source": "pdf-electrical-q5"
+}

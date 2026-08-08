@@ -1,0 +1,19 @@
+{
+  "id": "me-low-0002",
+  "type": "math-equation",
+  "difficulty": "low",
+  "variables": ["R1", "R2"],
+  "equations": [
+    {
+      "lhs": [ {"coef": 1, "var": "R1"}, {"coef": 1, "var": "R2"} ],
+      "rhs": [ {"coef": 18, "var": null} ]
+    },
+    {
+      "lhs": [ {"coef": 1, "var": "R1"}, {"coef": -1, "var": "R2"} ],
+      "rhs": [ {"coef": 6, "var": null} ]
+    }
+  ],
+  "answer": { "R1": 12, "R2": 6 },
+  "reasoning_trace": "From eq1: R1 + R2 = 18. From eq2: R1 - R2 = 6.\nAdding the two equations: (R1 + R2) + (R1 - R2) = 18 + 6 → 2R1 = 24 → R1 = 12.\nSubstituting R1 = 12 into eq1: 12 + R2 = 18 → R2 = 6.\nCheck: eq2: 12 - 6 = 6 ✓. This represents two resistors in series (18Ω) and their difference (6Ω).",
+  "source": "pdf-electrical-q3"
+}

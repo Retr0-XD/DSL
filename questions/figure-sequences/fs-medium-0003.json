@@ -1,0 +1,57 @@
+{
+  "id": "fs-medium-0003",
+  "type": "figure-sequence",
+  "difficulty": "medium",
+  "grid": { "rows": 4, "cols": 4 },
+  "frames": [
+    { "objects": [
+      { "shape": "circle", "row": 0, "col": 1, "color": "#000000", "rotation": 0 },
+      { "shape": "triangle", "row": 1, "col": 0, "color": "#e74c3c", "rotation": 0 }
+    ] },
+    { "objects": [
+      { "shape": "circle", "row": 1, "col": 2, "color": "#e74c3c", "rotation": 0 },
+      { "shape": "triangle", "row": 0, "col": 1, "color": "#e74c3c", "rotation": 90 }
+    ] },
+    { "objects": [
+      { "shape": "circle", "row": 2, "col": 3, "color": "#000000", "rotation": 0 },
+      { "shape": "triangle", "row": 1, "col": 2, "color": "#e74c3c", "rotation": 180 }
+    ] },
+    { "objects": [
+      { "shape": "circle", "row": 3, "col": 2, "color": "#e74c3c", "rotation": 0 },
+      { "shape": "triangle", "row": 2, "col": 3, "color": "#e74c3c", "rotation": 270 }
+    ] }
+  ],
+  "blank_5_options": [
+    { "objects": [
+      { "shape": "circle", "row": 3, "col": 1, "color": "#000000", "rotation": 0 },
+      { "shape": "triangle", "row": 3, "col": 2, "color": "#e74c3c", "rotation": 0 }
+    ] },
+    { "objects": [
+      { "shape": "circle", "row": 2, "col": 1, "color": "#000000", "rotation": 0 },
+      { "shape": "triangle", "row": 3, "col": 2, "color": "#e74c3c", "rotation": 0 }
+    ] },
+    { "objects": [
+      { "shape": "circle", "row": 3, "col": 1, "color": "#e74c3c", "rotation": 0 },
+      { "shape": "triangle", "row": 2, "col": 1, "color": "#e74c3c", "rotation": 0 }
+    ] }
+  ],
+  "blank_5_correct_index": 0,
+  "blank_6_options": [
+    { "objects": [
+      { "shape": "circle", "row": 2, "col": 0, "color": "#e74c3c", "rotation": 0 },
+      { "shape": "triangle", "row": 2, "col": 1, "color": "#e74c3c", "rotation": 90 }
+    ] },
+    { "objects": [
+      { "shape": "circle", "row": 2, "col": 0, "color": "#000000", "rotation": 0 },
+      { "shape": "triangle", "row": 3, "col": 1, "color": "#e74c3c", "rotation": 90 }
+    ] },
+    { "objects": [
+      { "shape": "circle", "row": 1, "col": 0, "color": "#e74c3c", "rotation": 0 },
+      { "shape": "triangle", "row": 2, "col": 1, "color": "#e74c3c", "rotation": 90 }
+    ] }
+  ],
+  "blank_6_correct_index": 0,
+  "motion_rule_description": "Circle: moves diagonally down-right along outer border, bouncing at corners, alternating color black/red. Triangle: moves diagonally up-right along outer border, bouncing at corners, rotating 90° clockwise each frame.",
+  "reasoning_trace": "Circle path: (0,1)→(1,2)→(2,3)→(3,2)→(3,1)→(2,0). Colors: black→red→black→red→black→red. Triangle path: (1,0)→(0,1)→(1,2)→(2,3)→(3,2)→(2,1). Rotations: 0°→90°→180°→270°→0°→90°. Blank5: circle at (3,1) black, triangle at (3,2) red rot0. Blank6: circle at (2,0) red, triangle at (2,1) red rot90.",
+  "source": "pdf-exercise-3"
+}

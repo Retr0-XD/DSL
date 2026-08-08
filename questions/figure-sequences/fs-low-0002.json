@@ -1,0 +1,27 @@
+{
+  "id": "fs-low-0002",
+  "type": "figure-sequence",
+  "difficulty": "low",
+  "grid": { "rows": 4, "cols": 4 },
+  "frames": [
+    { "objects": [ { "shape": "square", "row": 1, "col": 1, "color": "#1a7a5e", "rotation": 0 } ] },
+    { "objects": [ { "shape": "square", "row": 1, "col": 2, "color": "#1a7a5e", "rotation": 0 } ] },
+    { "objects": [ { "shape": "square", "row": 2, "col": 2, "color": "#1a7a5e", "rotation": 0 } ] },
+    { "objects": [ { "shape": "square", "row": 2, "col": 1, "color": "#1a7a5e", "rotation": 0 } ] }
+  ],
+  "blank_5_options": [
+    { "objects": [ { "shape": "square", "row": 1, "col": 1, "color": "#1a7a5e", "rotation": 0 } ] },
+    { "objects": [ { "shape": "square", "row": 1, "col": 0, "color": "#1a7a5e", "rotation": 0 } ] },
+    { "objects": [ { "shape": "square", "row": 0, "col": 1, "color": "#1a7a5e", "rotation": 0 } ] }
+  ],
+  "blank_5_correct_index": 0,
+  "blank_6_options": [
+    { "objects": [ { "shape": "square", "row": 1, "col": 2, "color": "#1a7a5e", "rotation": 0 } ] },
+    { "objects": [ { "shape": "square", "row": 2, "col": 2, "color": "#1a7a5e", "rotation": 0 } ] },
+    { "objects": [ { "shape": "square", "row": 2, "col": 1, "color": "#1a7a5e", "rotation": 0 } ] }
+  ],
+  "blank_6_correct_index": 0,
+  "motion_rule_description": "The teal square moves clockwise around the four center cells (1,1) → (1,2) → (2,2) → (2,1) → (1,1) → (1,2). It does not change color or rotation.",
+  "reasoning_trace": "Frame1: (1,1). Frame2: (1,2) - right. Frame3: (2,2) - down. Frame4: (2,1) - left. Frame5: back to (1,1) - up (completing the clockwise loop). Frame6: (1,2) - right again. Therefore blank_5 = (1,1) option 0, blank_6 = (1,2) option 0.",
+  "source": "pdf-exercise-1"
+}
